@@ -14,7 +14,7 @@
     /********************/
     :root {
     --color-main:#1B1B63;
-    --color-vuurpijl: #483A98;
+    --color-vuurpijl: #0dff00;
     --explosie-color-1: #8BE2F2;
     --explosie-color-2: #BA9BFA;
     --explosie-color-3: #8BFB93;
@@ -95,7 +95,7 @@
     .container input:checked ~ .checkmark:after {
         display: block;
     }
-    
+    /* checkbox styling gevonden op https://www.w3schools.com/howto/howto_css_custom_checkbox.asp */
 
         
         
@@ -123,14 +123,12 @@
         height: 70px;
         bottom: 0;
         left: 50vw;
-        transform: rotate(-90deg);
         opacity: 0;  
     }
 
     .wavy::before
     {
         content: 'aaaaaaaaa';
-        width: 10px;
         font-size: 2em;
         color: transparent;
         text-decoration-style: wavy;
@@ -198,9 +196,6 @@
     }
 
 
-
-
-
     /*********************/
     /* explosie animatie */
     /*********************/
@@ -210,36 +205,7 @@
     li:nth-of-type(4) {--index:3;}
     li:nth-of-type(5) {--index:4;}
     li:nth-of-type(6) {--index:5;}
-    /* li:nth-of-type(7) {--index:6;}
-    li:nth-of-type(8) {--index:7;}
-    li:nth-of-type(9) {--index:8;}
-    li:nth-of-type(10) {--index:9;}
-    li:nth-of-type(11) {--index:10;}
-    li:nth-of-type(12) {--index:11;}
-    li:nth-of-type(13) {--index:12;}
-    li:nth-of-type(14) {--index:13;}
-    li:nth-of-type(15) {--index:14;}
-    li:nth-of-type(16) {--index:15;}
-    li:nth-of-type(17) {--index:16;}
-    li:nth-of-type(18) {--index:17;}
-    li:nth-of-type(19) {--index:18;}
-    li:nth-of-type(20) {--index:19;}
-    li:nth-of-type(21) {--index:20;}
-    li:nth-of-type(22) {--index:21;}
-    li:nth-of-type(23) {--index:22;}
-    li:nth-of-type(24) {--index:23;}
-    li:nth-of-type(25) {--index:24;}
-    li:nth-of-type(26) {--index:25;}
-    li:nth-of-type(27) {--index:26;}
-    li:nth-of-type(28) {--index:27;}
-    li:nth-of-type(29) {--index:28;}
-    li:nth-of-type(30) {--index:29;}
-    li:nth-of-type(31) {--index:30;}
-    li:nth-of-type(32) {--index:31;}
-    li:nth-of-type(33) {--index:32;}
-    li:nth-of-type(34) {--index:33;}
-    li:nth-of-type(35) {--index:34;}
-    li:nth-of-type(36) {--index:35;} */
+
     
     @keyframes rotate {
         0% {
@@ -311,3 +277,100 @@
 
 
         /* chaining kan alleen als ik hetzelfde element wil animeren, dus niet voor 2 verschillende elementen (div & ul) */
+
+        
+        
+
+.box {
+    position: absolute;
+    right: 10%;
+    bottom: 50%;
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    border-radius: 100px;
+    transform-origin:center; /* rotate from the center */
+    opacity: 0;
+    background: linear-gradient(#00ccff, #ff00cc, #00cc55, #f48e21);
+    background-size: 300% 300%;
+}
+
+
+    
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg); /* start from 0 degree */
+        background-position: 0 50%;
+        opacity: 0;
+    }
+    50% {
+        transform: rotate(360deg); /* end at 360 degree which the same as 0 degree to create the continuous loop*/
+        background-position: 50% 100%;
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(0deg); /* end at 360 degree which the same as 0 degree to create the continuous loop*/
+        background-position: 0% 50%;
+        opacity: 0;
+    }
+}
+
+
+
+.wavy:nth-child(2) {
+    position: absolute;
+    width: 10px;
+    height: 70px;
+    bottom: 0;
+    left: 85vw;
+    opacity: 0;
+    z-index: -1;
+}
+
+.wavy::before:nth-child(2) {
+    content: 'aaaaaaaaa';
+    font-size: 2em;
+    color: transparent;
+    text-decoration-style: wavy;
+    text-decoration-color: var(--color-vuurpijl);
+    text-decoration-line: underline;
+}
+
+
+@keyframes vuurpijl {
+    0% {
+        /* transform: rotate(-90deg); */
+        transform: translate(0,0%) rotate(-90deg);
+        opacity: 0;
+    }
+    50% {
+        /* transform: rotate(-90deg); */
+        transform: translate(0,25%) rotate(-90deg);
+        opacity: 1;
+    }
+    100% {
+        /* transform: rotate(-90deg); */
+        transform: translate(0,-50vh) rotate(-90deg);
+        opacity: 0;
+    }
+} 
+
+body:has(:checked) .wavy:nth-child(2) {
+        animation-play-state:vuurpijl;
+    /* 	dit geeft de rotate animatie aan */
+        animation:vuurpijl;
+    /* 	tijd van de druratie */
+        animation-duration:2000ms;
+    /* 	de animatie is overal dezelfde snelheid */
+        animation-timing-function: fade-inout;
+    /*  dit laat de animatie starten na 700ms */
+        animation-delay:0s;
+}
+
+
+
+body:has(:checked) .box {
+    /* animation: gradient 4s linear; */
+    animation:rotation 4s ease-in-out; /* run the rotation for 10s and iterate again */
+    animation-delay: 1.2s;
+}
