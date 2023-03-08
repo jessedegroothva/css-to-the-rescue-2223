@@ -9,279 +9,294 @@
 
 
 
-    /********************/
-    /* ALGEMENE STIJLEN */
-    /********************/
-    :root {
+/********************/
+/* ALGEMENE STIJLEN */
+/********************/
+:root {
     --color-main:#1B1B63;
+    --checkbox:#eee;
+    --checkbox-hover:#ccc;
+    --checkbox-color:#2196F3;
     --color-vuurpijl: #0dff00;
     --explosie-color-1: #8BE2F2;
     --explosie-color-2: #BA9BFA;
     --explosie-color-3: #8BFB93;
     --explosie-color-4: #FBEB7B;
-    }
-    
-    body {
-        min-height:100vh;
-        margin:0;
-        background-color: var(--color-main);
-        display:grid;
-        place-content:center;
-    }
+    --gradient-explosie-color-1: #00ccff;
+    --gradient-explosie-color-2: #ff00cc;
+    --gradient-explosie-color-3: #00cc55;
+    --gradient-explosie-color-4: #f48e21;
+}
 
-
-    label {
-            position:absolute;
-            top:1em;
-    }
-
+body {
+    min-height:100vh;
+    margin:0;
+    background-color: var(--color-main);
+    display:grid;
+    place-content:center;
+}
 
 
 
 
-    /*****************/
-    /* checkbox styling */
-    /*****************/
-    /* The container */
-    .container {
-        display: block;
-        position: relative;
-        padding: 4em;
-        cursor: pointer;
-        font-size: 22px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-    
-    /* Hide the browser's default checkbox */
-    .container input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-        height: 0;
-        width: 0;
-    }
-    
-    /* Create a custom checkbox */
-    .checkmark {
-        position: absolute;
-        top: 0;
-        right: 50vw;
-        height: 50px;
-        width: 50px;
-        background-color: #eee;
-    }
-    
-    /* On mouse-over, add a grey background color */
-    .container:hover input ~ .checkmark {
-        background-color: #ccc;
-    }
-    
-    /* When the checkbox is checked, add a blue background */
-    .container input:checked ~ .checkmark {
-        background-color: #2196F3;
-    }
-    
-    /* Create the checkmark/indicator (hidden when not checked) */
-    .checkmark:after {
-        content: "";
-        position: absolute;
-        display: none;
-    }
-    
-    /* Show the checkmark when checked */
-    .container input:checked ~ .checkmark:after {
-        display: block;
-    }
-    /* checkbox styling gevonden op https://www.w3schools.com/howto/howto_css_custom_checkbox.asp */
+
+
+
+/*****************/
+/* Mask Border */
+/*****************/
+/* Gradient Mask Border */
+div:nth-of-type(6) {
+    width: 95.2vw;
+    height: 89.3vh;
+    position: absolute;
+    top: 1.2rem;
+    left: 1.2rem;
+    border: 10px solid;
+    border-image-source: 
+        linear-gradient(90deg, var(--gradient-explosie-color-1), var(--gradient-explosie-color-2), var(--gradient-explosie-color-3), var(--gradient-explosie-color-4));
+    border-image-outset: 0px 0px 100px 0px;
+    border-image-slice: 1;
+    z-index: -1;
+}
+
+/* Image Mask Border */
+div:nth-of-type(7) {
+    width: 93.7vw;
+    height: 89.3vh;
+    position: absolute;
+    top: 1;
+    left: 1;
+    border: 40px solid;
+    /* border image slice zorgt ervoor dat de border niet over de hele breedte van de afbeelding komt */
+    border-image-slice: 27 8 27 8;
+    /* border image width geeft de breedte van de border aan */
+    border-image-width: 20px 20px 20px 20px;
+    /* border image outset geeft de afstand van de border aan */
+    border-image-outset: 0px 0px 100px 0px;
+    /* border image repeat geeft aan of de border meerdere keren moet worden herhaald */
+    /* strecht strecht zorgt ervoor dat de border niet wordt herhaald */
+    border-image-repeat: stretch stretch;
+    border-style: solid;
+    /* border-image-source geeft de afbeelding aan die als border wordt gebruikt */
+    border-image-source: url(/vuurwerk/img/psycedelic-img.jpg);
+    /* bron https://wallpaper-mania.com/post/wallpaper-id-77700059551/ */
+    z-index: -1;
+}
+
+
+
+
+
+
+
+/*****************/
+/* checkbox styling */
+/*****************/
+/* The container */
+label {
+    position:absolute;
+    top:1em;
+    position: relative;
+    cursor: pointer;
+}
+
+/* maakt de default desktop checkbox ontzichtbaar */
+label input {
+    opacity: 0;
+}
+
+/* Creatie van een custom checkbox */
+label span {
+    position: absolute;
+    right: 50vw;
+    height: 50px;
+    width: 50px;
+    background-color: var(--checkbox);
+}
+
+/* hover effect geeft grijze achtergrond aan */
+label:hover input ~ span {
+    background-color: var(--checkbox-hover);
+}
+
+/* Als de checkbox gechecked is dan geeft het een blauwe achtergrond kleur aan */
+label input:checked ~ span {
+    background-color: var(--checkbox-color);
+}
+/* checkbox styling gevonden op https://www.w3schools.com/howto/howto_css_custom_checkbox.asp */
+
+   
+
+
+
 
         
-        
-    /*****************/
-    /* pijl animatie */
-    /*****************/
-    /* div
-    {
-        border-radius: 50px;
-        background-color: var(--color-vuurpijl);
-        position: absolute;
-        bottom: 0;
-        left: 50vw;
-        width: 10px;
-        height: 70px;
-        overflow: hidden;
-        opacity: 0;
-        box-shadow: 0px 9px 0.4em var(--color-vuurpijl);
-    }  */
+/***************************************************************/
+/* De eerste div (underline vuurpijl animatie) rotatie animatie */
+/***************************************************************/
+div:first-of-type {
+    position: absolute;
+    width: 10px;
+    height: 70px;
+    bottom: 0;
+    left: 50vw;
+    opacity: 0;  
+}
 
-    .wavy
-    {
-        position: absolute;
-        width: 10px;
-        height: 70px;
-        bottom: 0;
-        left: 50vw;
-        opacity: 0;  
+div:first-of-type::before {
+    content: 'aaaaaaaaa';
+    font-size: 2em;
+    color: transparent;
+    text-decoration-style: wavy;
+    text-decoration-color: var(--gradient-explosie-color-2);
+    text-decoration-line: underline;
+}
+
+
+/* net als in premiere pro */
+@keyframes vuurpijl {
+    0% {
+        /* transform: rotate(-90deg); */
+        transform: translate(0,0%) rotate(-90deg);
+        opacity: 1;
     }
-
-    .wavy::before
-    {
-        content: 'aaaaaaaaa';
-        font-size: 2em;
-        color: transparent;
-        text-decoration-style: wavy;
-        text-decoration-color: var(--color-vuurpijl);
-        text-decoration-line: underline;
+    100% {
+        /* transform: rotate(-90deg); */
+        transform: translate(0,-35vh) rotate(-90deg);
+        opacity: 1;
     }
+} 
 
-
-    /* net als in premiere pro */
-    /* @keyframes vuurpijl {
-        0% {
-            transform: translateX(-1px);
-        }
-        100% {
-            transform: translateX(-42px);
-        }
-    } */
-
-    @keyframes vuurpijl {
-        0% {
-            /* transform: rotate(-90deg); */
-            transform: translate(0,0%) rotate(-90deg);
-            opacity: 1;
-        }
-        100% {
-            /* transform: rotate(-90deg); */
-            transform: translate(0,-35vh) rotate(-90deg);
-            opacity: 1;
-        }
-    } 
-
-    body:has(:checked) .wavy {
-        animation-play-state:vuurpijl;
-
+body:has(:checked) div:first-of-type {
+    animation-play-state:vuurpijl;
     /* 	dit geeft de rotate animatie aan */
-        animation:vuurpijl;
+    animation:vuurpijl;
     /* 	tijd van de druratie */
-        animation-duration:200ms;
+    animation-duration:200ms;
     /* 	de animatie is overal dezelfde snelheid */
-        animation-timing-function:ease-in;
+    animation-timing-function:ease-in;
     /*  dit laat de animatie starten na 700ms */
-        animation-delay:0s;
-    }
+    animation-delay:0s;
+}
+/* Einde eerste div (underline vuurpijl animatie) gradient animatie */
 
 
 
 
-    /*****************/
-    /* THE CONTAINER */
-    /*****************/
-    ul {
-        --length:6;
-        
-        position:relative;
-        
-        margin:0;
-        padding:0 1em;
-        list-style:none;
-        
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        
-        font-size:3em;
-    }
 
 
-    /*********************/
-    /* explosie animatie */
-    /*********************/
-    li:nth-of-type(1) {--index:0;}
-    li:nth-of-type(2) {--index:1;}
-    li:nth-of-type(3) {--index:2;}
-    li:nth-of-type(4) {--index:3;}
-    li:nth-of-type(5) {--index:4;}
-    li:nth-of-type(6) {--index:5;}
-
+/*****************/
+/* THE CONTAINER */
+/*****************/
+ul {
+    --length:6;
     
-    @keyframes rotate {
-        0% {
-            /* --hue:calc(0 + 360 / var(--length) * var(--index) ); */
-            transform:
-            rotate( calc(0deg + 360deg / var(--length) * var(--index) ) );
-            opacity: 1;
-        }
-        75% {
+    margin:0;
+    padding:0 1em;
+    list-style:none;
+    
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    
+    font-size:3em;
+}
+
+/*********************/
+/* explosie animatie */
+/*********************/
+li:nth-of-type(1) {--index:0;}
+li:nth-of-type(2) {--index:1;}
+li:nth-of-type(3) {--index:2;}
+li:nth-of-type(4) {--index:3;}
+li:nth-of-type(5) {--index:4;}
+li:nth-of-type(6) {--index:5;}
+
+
+@keyframes rotate {
+    0% {
+        transform:
+        /* 360deg zorgt ervoor dat elk list item op een andere positie begint */
+        rotate( calc(0deg + 360deg / var(--length) * var(--index) ) );
+        opacity: 1;
+    }
+    75% {
+        opacity:1;
+    }
+    100% {
+        transform:
+            /* 1080deg zorgt ervoor dat de animatie 3 keer draait */
+            /* 360deg zorgt ervoor dat elk list item op een andere positie eindigt */
+            /* de --length en --index krijgen de waarde toegeschreven */
+            rotate( calc(1080deg + 360deg / var(--length) * var(--index) ) )
+            /* 500% laat de animatie vanaf 500% van de breedte van de pagina eindigen */
+            translateY(-500%);
+            
             opacity:1;
-        }
-        100% {
-            /* --hue:calc(270 + 270 / var(--length) * var(--index) ); */
+    }
+}
     
-            transform:
-                rotate( calc(1080deg + 360deg / var(--length) * var(--index) ) )
-                translateY(-500%);
-                
-                opacity:1;
-        }
-    }
-    
-    body:has(:checked) li {
-        animation-name:rotate;
-        animation-duration:1s;
-        animation-timing-function:linear;
-        animation-delay: 200ms;
-    }
-    
-    li {
-        position:absolute;
-        width:.5em;
-        aspect-ratio:1;
-        border-radius:50%;
-        opacity: 0;
-    }
+body:has(:checked) li {
+    animation-name:rotate;
+    animation-duration:1s;
+    animation-timing-function:linear;
+    animation-delay: 200ms;
+}
 
-    p:nth-of-type(1) { 
-        --index:0;
-        background-color: var(--explosie-color-1);
-    }
+li {
+    /* absolute plaatst de list items op dezelfde positie */
+    position:absolute;
+    /* Breedte aangeven */
+    width:.5em;
+    aspect-ratio:1;
+    border-radius:50%;
+    /* list items worden niet laten zien als de animatie niet wordt afgespeeld*/
+    opacity: 0;
+}
 
-    li:nth-of-type(2) { 
-        --index:1;
-        background-color: var(--explosie-color-2);
-    }
+p:nth-of-type(1) { 
+    --index:0;
+    background-color: var(--explosie-color-1);
+}
 
-    li:nth-of-type(3) { 
-        --index:2;
-        background-color: var(--explosie-color-3);
-    }
+li:nth-of-type(2) { 
+    --index:1;
+    background-color: var(--explosie-color-2);
+}
 
-    li:nth-of-type(4) { 
-        --index:3;
-        background-color: var(--explosie-color-4);
-    }
+li:nth-of-type(3) { 
+    --index:2;
+    background-color: var(--explosie-color-3);
+}
 
-    li:nth-of-type(5) { 
-        --index:4;
-        background-color: var(--explosie-color-1);
-    }
+li:nth-of-type(4) { 
+    --index:3;
+    background-color: var(--explosie-color-4);
+}
 
-    li:nth-of-type(6) { 
-        --index:5;
-        background-color: var(--explosie-color-2);
-    }
+li:nth-of-type(5) { 
+    --index:4;
+    background-color: var(--explosie-color-1);
+}
 
-    
+li:nth-of-type(6) { 
+    --index:5;
+    background-color: var(--explosie-color-2);
+}
+/* chaining kan alleen als ik hetzelfde element wil animeren, dus niet voor 2 verschillende elementen (div & ul) */
+
+     
 
 
-        /* chaining kan alleen als ik hetzelfde element wil animeren, dus niet voor 2 verschillende elementen (div & ul) */
+
+
 
         
-        
-
-.box {
+/*********************/
+/* Gradient animatie */
+/*********************/
+div:nth-of-type(3) {
     position: absolute;
     right: 10%;
     bottom: 50%;
@@ -291,43 +306,51 @@
     border-radius: 100px;
     transform-origin:center; /* rotate from the center */
     opacity: 0;
-    background: linear-gradient(#00ccff, #ff00cc, #00cc55, #f48e21);
+    background: linear-gradient(45deg, var(--gradient-explosie-color-1), var(--gradient-explosie-color-2), var(--gradient-explosie-color-3), var(--gradient-explosie-color-4));
     background-size: 300% 300%;
 }
-
-
     
 @keyframes rotation {
     0% {
-        transform: rotate(0deg); /* start from 0 degree */
-        background-position: 0 50%;
+        transform: rotate(0deg); 
+        background-position: 0 50%; /* 0 betekend dat de gradient van links naar rechts gaat, 50% betekend dat de gradient van boven naar beneden gaat */
         opacity: 0;
     }
     50% {
-        transform: rotate(360deg); /* end at 360 degree which the same as 0 degree to create the continuous loop*/
+        transform: rotate(360deg); /* halverwegen de animatie draait de gradient 360 graden en dan weer terug naar 0 graden */
         background-position: 50% 100%;
         opacity: 1;
     }
     100% {
-        transform: rotate(0deg); /* end at 360 degree which the same as 0 degree to create the continuous loop*/
+        transform: rotate(0deg);
         background-position: 0% 50%;
         opacity: 0;
     }
 }
 
+body:has(:checked) div:nth-of-type(3) {
+    animation:rotation 4s ease-in-out; 
+    animation-delay: 1.2s;
+}
 
 
-.wavy:nth-child(2) {
+
+
+
+
+/********************************************************/
+/* tweede div (underline vuurpijl animatie) rotatie animatie*/
+/********************************************************/
+div:nth-of-type(2) {
     position: absolute;
     width: 10px;
     height: 70px;
     bottom: 0;
     left: 85vw;
     opacity: 0;
-    z-index: -1;
 }
 
-.wavy::before:nth-child(2) {
+div:nth-of-type(2)::before {
     content: 'aaaaaaaaa';
     font-size: 2em;
     color: transparent;
@@ -344,33 +367,84 @@
         opacity: 0;
     }
     50% {
-        /* transform: rotate(-90deg); */
-        transform: translate(0,25%) rotate(-90deg);
+        /* transform: translate(0,25%) rotate(-90deg); */
         opacity: 1;
     }
     100% {
-        /* transform: rotate(-90deg); */
         transform: translate(0,-50vh) rotate(-90deg);
         opacity: 0;
     }
 } 
 
-body:has(:checked) .wavy:nth-child(2) {
-        animation-play-state:vuurpijl;
+body:has(:checked) div:nth-of-type(2) {
+    animation-play-state:vuurpijl;
     /* 	dit geeft de rotate animatie aan */
-        animation:vuurpijl;
+    animation:vuurpijl;
     /* 	tijd van de druratie */
-        animation-duration:2000ms;
+    animation-duration:1700ms;
     /* 	de animatie is overal dezelfde snelheid */
-        animation-timing-function: fade-inout;
+    animation-timing-function: fade-inout;
     /*  dit laat de animatie starten na 700ms */
-        animation-delay:0s;
+    animation-delay:0s; 
+}
+/* Einde tweede div (underline vuurpijl animatie) rotatie animatie */
+
+
+
+
+
+
+/* Begin bom animatie */
+div:nth-of-type(4) {
+    opacity: 0;
+}
+
+body:has(:checked) div:nth-of-type(4) {
+    animation: bom 2.5s ease-out;
+    opacity: 0;
+    /* border: 1px solid var(--explosie-color-1); */
+}
+
+@keyframes bom {
+    0% {
+        transform:  translate(-200%,-400%) rotate(-90deg) scale(.3);;
+        opacity: 1;
+    }
+    100% {
+        transform:  translate(-200%,380%) rotate(-90deg) scale(.2);;
+        opacity: 1;
+    }
 }
 
 
 
-body:has(:checked) .box {
-    /* animation: gradient 4s linear; */
-    animation:rotation 4s ease-in-out; /* run the rotation for 10s and iterate again */
-    animation-delay: 1.2s;
+
+
+
+
+/*********************/
+/* Einde bom animatie */
+/*********************/
+div:nth-of-type(5) {
+    opacity: 0;
 }
+
+body:has(:checked) div:nth-of-type(5) {
+    animation: explosie 3s ease-out 2s;
+    opacity: 0;
+}
+
+@keyframes explosie {
+    0% {
+        transform: translate(-200%,15%) scale(.2);
+        opacity: 1;
+        transform-origin: bottom center;
+    }
+    100% {
+        transform:  translate(-200%,15%) scale(.8);
+        opacity: 1;
+        transform-origin: bottom center;
+    }
+}
+    
+
