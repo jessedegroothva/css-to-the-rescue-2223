@@ -64,8 +64,8 @@ div:nth-of-type(7) {
     width: 93.7vw;
     height: 89.3vh;
     position: absolute;
-    top: 1;
-    left: 1;
+    top: 0;
+    left: 0;
     border: 40px solid;
     /* border image slice zorgt ervoor dat de border niet over de hele breedte van de afbeelding komt */
     border-image-slice: 27 8 27 8;
@@ -78,7 +78,7 @@ div:nth-of-type(7) {
     border-image-repeat: stretch stretch;
     border-style: solid;
     /* border-image-source geeft de afbeelding aan die als border wordt gebruikt */
-    border-image-source: url(/vuurwerk/img/psycedelic-img.jpg);
+    border-image-source: url(../../vuurwerk/img/psycedelic-img.jpg);
     /* bron https://wallpaper-mania.com/post/wallpaper-id-77700059551/ */
     z-index: -1;
 }
