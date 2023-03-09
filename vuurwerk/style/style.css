@@ -46,7 +46,7 @@ body {
 /*****************/
 /* Gradient Mask Border */
 div:nth-of-type(6) {
-    width: 95.2vw;
+    width: 96.3vw;
     height: 89.3vh;
     position: absolute;
     top: 1.2rem;
@@ -61,7 +61,7 @@ div:nth-of-type(6) {
 
 /* Image Mask Border */
 div:nth-of-type(7) {
-    width: 93.7vw;
+    width: 94.8vw;
     height: 89.3vh;
     position: absolute;
     top: 0;
