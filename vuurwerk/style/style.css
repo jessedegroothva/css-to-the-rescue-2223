@@ -377,7 +377,6 @@ div:nth-of-type(2)::before {
 } 
 
 body:has(:checked) div:nth-of-type(2) {
-    animation-play-state:vuurpijl;
     /* 	dit geeft de rotate animatie aan */
     animation:vuurpijl;
     /* 	tijd van de druratie */
@@ -415,16 +414,16 @@ body:has(:checked) div:nth-of-type(4) {
         opacity: 1;
     }
 }
-
-
-
-
-
-
-
 /*********************/
 /* Einde bom animatie */
 /*********************/
+
+
+
+
+
+
+
 div:nth-of-type(5) {
     opacity: 0;
 }
