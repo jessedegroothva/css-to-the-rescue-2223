@@ -431,18 +431,18 @@ div:nth-of-type(5) {
 body:has(:checked) div:nth-of-type(5) {
     animation: explosie 3s ease-out 2s;
     opacity: 0;
+    transform-origin: bottom center;
 }
 
 @keyframes explosie {
     0% {
         transform: translate(-200%,15%) scale(.2);
         opacity: 1;
-        transform-origin: bottom center;
+        
     }
     100% {
         transform:  translate(-200%,15%) scale(.8);
         opacity: 1;
-        transform-origin: bottom center;
     }
 }
     
